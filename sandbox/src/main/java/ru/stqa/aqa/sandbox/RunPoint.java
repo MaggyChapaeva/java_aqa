@@ -5,7 +5,7 @@ public class RunPoint {
     public static void main(String[] args){
 
         double x1 = 2.0;
-        double y1 = -5.0;
+        double y1 = 6.0;
         Point p1 = new Point(x1, y1);
 
         double x2 = -4.0;
