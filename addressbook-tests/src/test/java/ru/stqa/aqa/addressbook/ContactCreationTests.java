@@ -29,6 +29,7 @@ public class ContactCreationTests {
 
     @Test
     public void testContactCreation() throws Exception {
+
         fillContactForm(new ContactData("Mariya", "Kolesnikova", "MKolesnikova", "+71234568899", "test@mail.com"));
         submitGroupCreation();
         returnToHomePage();
