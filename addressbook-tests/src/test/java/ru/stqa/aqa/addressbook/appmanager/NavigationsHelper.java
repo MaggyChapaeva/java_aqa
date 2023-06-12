@@ -3,15 +3,14 @@ package ru.stqa.aqa.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class NavigationsHelper {
-    private WebDriver wd;
+public class NavigationsHelper extends HelperBase {
 
     public NavigationsHelper(WebDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     //работа с группами
     public void gotoGroupPage() {
-          wd.findElement(By.linkText("groups")).click();
+          click(By.linkText("groups"));
     }
 }
