@@ -31,4 +31,8 @@ public class ContactHelper extends HelperBase{
     public void deleteSelectedContact() { click(By.xpath("//input[@value='Delete']")); }
 
     public void acceptContactDeletion() { acceptAlert(); }
+
+    public void initContactModification() { click(By.xpath("//img[@alt='Edit']")); }
+
+    public void updateContact() { click(By.name("update")); }
 }
