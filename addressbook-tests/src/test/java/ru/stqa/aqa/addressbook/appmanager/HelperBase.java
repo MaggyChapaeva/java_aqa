@@ -14,8 +14,13 @@ public class HelperBase {
 
     protected void type(By locator, String text) {
         click(locator);
-        wd.findElement(locator).clear();
-        wd.findElement(locator).sendKeys(text);
+        if(text != null){
+            String existingText = wd.findElement(locator).getAttribute("value");
+            if(!text.equals(existingText)){ //проверяет, если поле заполнено другим значением
+                wd.findElement(locator).clear();
+                wd.findElement(locator).sendKeys(text);
+            }
+        }  //если переданные данные будут содержать null, то метод sendKeys не вызывается и поле проосто останется пустым
     }
 
     protected void click(By locator) {
