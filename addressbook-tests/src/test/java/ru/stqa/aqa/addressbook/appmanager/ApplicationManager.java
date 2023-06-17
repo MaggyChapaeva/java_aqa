@@ -3,22 +3,34 @@ package ru.stqa.aqa.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.stqa.aqa.addressbook.model.ContactData;
-
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.Browser;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
+    private String browser;
     WebDriver wd;
     private NavigationsHelper navigationsHelper;
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
     private SessionHelper sessionHelper;
 
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
+
     public void init() {
-        System.setProperty("webdriver.gecko.driver", "lib/geckodriver.exe");
-        wd = new FirefoxDriver();
+        if (browser.equals(Browser.FIREFOX.browserName())) {
+            wd = new FirefoxDriver();
+        } else if (browser.equals(Browser.CHROME.browserName())) {
+            wd = new ChromeDriver();
+        } else if (browser.equals(Browser.IE.browserName())) {
+            wd = new InternetExplorerDriver();
+        }
+
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/index.php");
         sessionHelper = new SessionHelper(wd);
