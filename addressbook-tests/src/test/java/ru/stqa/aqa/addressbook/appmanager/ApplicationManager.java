@@ -31,7 +31,7 @@ public class ApplicationManager {
             wd = new InternetExplorerDriver();
         }
 
-        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //увеличить таймаут при нестабильности приложения, при медленной загрузке элемента
         wd.get("http://localhost/addressbook/index.php");
         sessionHelper = new SessionHelper(wd);
         groupHelper = new GroupHelper(wd);
