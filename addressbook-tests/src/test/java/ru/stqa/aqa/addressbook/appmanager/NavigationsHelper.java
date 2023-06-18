@@ -11,10 +11,20 @@ public class NavigationsHelper extends HelperBase {
 
     //работа с группами
     public void gotoGroupPage() {
-          click(By.linkText("groups"));
+        if(isElementPresent(By.tagName("h1"))
+                && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+                && isElementPresent(By.name("new"))) {
+            return;
+        } else{
+            click(By.linkText("groups"));
+        }
+
     }
 
     public void returnToHomePage() {
+        if(isElementPresent(By.id("maintable"))){
+            return;
+        }
         wd.findElement(By.linkText("home")).click();
     }
 
