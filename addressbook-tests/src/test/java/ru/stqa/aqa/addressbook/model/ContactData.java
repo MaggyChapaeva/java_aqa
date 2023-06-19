@@ -1,12 +1,12 @@
 package ru.stqa.aqa.addressbook.model;
 
 public class ContactData {
-    private final String firstname;
-    private final String lastname;
-    private final String nickname;
-    private final String mobile;
-    private final String email;
-    private final String group;
+    private String firstname;
+    private String lastname;
+    private String nickname;
+    private String mobile;
+    private String email;
+    private String group;
 
     public ContactData(String firstname, String lastname, String nickname, String mobile, String email, String group) {
         this.firstname = firstname;
