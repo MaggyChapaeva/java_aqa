@@ -1,8 +1,7 @@
 package ru.stqa.aqa.addressbook.tests;
-import org.openqa.selenium.By;
+
 import org.testng.annotations.*;
 import ru.stqa.aqa.addressbook.model.ContactData;
-import ru.stqa.aqa.addressbook.model.GroupData;
 
 public class ContactDeletionTests extends TestBase{
 
