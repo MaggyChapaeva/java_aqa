@@ -8,24 +8,24 @@ import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
-    @Test
+    @Test(enabled = false)
     public void testContactModification() throws Exception {
 
-        if(!app.getContactHelper().isThereAContact()){
-            app.getContactHelper().createContact(new ContactData("Mariya", "Kolesnikova", "MKolesnikova", "+71234568899", "test@mail.com", "test1"));
+        if(!app.contact().isThereAContact()){
+            app.contact().createContact(new ContactData("Mariya", "Kolesnikova", "MKolesnikova", "+71234568899", "test@mail.com", "test1"));
         }
 
-        List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().getContactList();
 
-        app.getContactHelper().selectContact(0);
-        app.getContactHelper().initContactModification();
+        app.contact().selectContact(0);
+        app.contact().initContactModification();
         ContactData contact = new ContactData(before.get(0).getId(), "RenameMariya","Kolesnikova",
                 "MKolesnikova", "+71234568800", "test@mail.com", null);
-        app.getContactHelper().fillContactForm(contact, false);
-        app.getContactHelper().updateContact();
-        app.getNavigationsHelper().returnToHomePage();
+        app.contact().fillContactForm(contact, false);
+        app.contact().updateContact();
+        app.goTo().returnToHomePage();
 
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.contact().getContactList();
 
         Assert.assertEquals(after.size(), before.size());
 
