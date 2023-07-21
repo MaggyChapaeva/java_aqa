@@ -16,6 +16,7 @@ public class ContactHelper extends HelperBase{
     }
 
     public Contacts contactCache = null;
+
     public Contacts all() {
 
         if(contactCache != null){
@@ -30,9 +31,10 @@ public class ContactHelper extends HelperBase{
             String firstname = cells.get(2).getText();
             String lastname = cells.get(1).getText();
             int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
-            String[] phones = cells.get(5).getText().split("\n");
+            String allPhones = cells.get(5).getText();
+            String address = cells.get(3).getText();
             ContactData contact = new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
-                    .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]);
+                    .withAllPhones(allPhones).withAddress(address);
             contactCache.add(contact);
         }
 
@@ -120,9 +122,10 @@ public class ContactHelper extends HelperBase{
         String home = wd.findElement(By.name("home")).getAttribute("value");
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
         String work = wd.findElement(By.name("work")).getAttribute("value");
+        String address = wd.findElement(By.name("address")).getText();
         wd.navigate().back();
         return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
-                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withAddress(address);
     }
 
     private void initContactModificationById(int id) {
