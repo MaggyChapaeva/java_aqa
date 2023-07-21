@@ -13,7 +13,7 @@ public class ContactModificationTests extends TestBase {
         if(app.contact().all().size() == 0){
             app.contact().create(new ContactData()
                     .withFirstname("Mariya").withLastname("Kolesnikova").withNickname("MKolesnikova")
-                    .withMobile("+71234568899").withEmail("test@mail.com"));
+                    .withMobilePhone("+71234568899").withEmail("test@mail.com"));
         }
     }
     @Test
@@ -22,11 +22,13 @@ public class ContactModificationTests extends TestBase {
         Contacts before = app.contact().all();
         ContactData updatedContact = before.iterator().next();
         ContactData contact = new ContactData().withId(updatedContact.getId()).withFirstname("RenameMariya").withLastname("Kolesnikova").withNickname("MKolesnikova")
-                .withMobile("+71234568800").withEmail("test@mail.com");
+                .withMobilePhone("+71234568800").withEmail("test@mail.com");
         app.contact().update(contact);
+
+        assertThat(app.contact().count(), equalTo(before.size()));
+
         Contacts after = app.contact().all();
 
-        assertThat(after.size(), equalTo(before.size()));
         assertThat(after, equalTo(before.without(updatedContact).withAdded(contact)));
     }
 }
