@@ -5,10 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.aqa.addressbook.model.GroupData;
 import ru.stqa.aqa.addressbook.model.Groups;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class GroupHelper extends HelperBase{
 
@@ -16,6 +13,37 @@ public class GroupHelper extends HelperBase{
         super(wd);
     }
 
+    public Groups all() {
+        Groups groups = new Groups();
+        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+        for (WebElement element : elements) {
+            String name = element.getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            groups.add(new GroupData().withId(id).withName(name));
+        }
+        return groups;
+    }
+
+    public void create(GroupData group) {
+        initGroupCreation();
+        fillGroupForm(group);
+        submitGroupCreation();
+        returnToGroupPage();
+    }
+
+    public void modify(GroupData group) {
+        selectGroupById(group.getId());
+        initGroupModification();
+        fillGroupForm(group);
+        submitGroupModification();
+        returnToGroupPage();
+    }
+
+    public void delete(GroupData group) {
+        selectGroupById(group.getId());
+        deleteSelectedGroup();
+        returnToGroupPage();
+    }
     public void returnToGroupPage() {
         click(By.linkText("group page"));
     }
@@ -35,6 +63,14 @@ public class GroupHelper extends HelperBase{
         click(By.name("submit"));
     }
 
+    public void initGroupModification() {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupModification() {
+        click(By.name("update"));
+    }
+
 
     public void selectGroupById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
@@ -44,34 +80,6 @@ public class GroupHelper extends HelperBase{
         click(By.name("delete"));
     }
 
-    public void initGroupModification() {
-        click(By.name("edit"));
-    }
-
-    public void submitGroupModification() {
-        click(By.name("update"));
-    }
-
-    public void modify(GroupData group) {
-        selectGroupById(group.getId());
-        initGroupModification();
-        fillGroupForm(group);
-        submitGroupModification();
-        returnToGroupPage();
-    }
-    public void create(GroupData group) {
-        initGroupCreation();
-        fillGroupForm(group);
-        submitGroupCreation();
-        returnToGroupPage();
-    }
-
-
-    public void delete(GroupData group) {
-        selectGroupById(group.getId());
-        deleteSelectedGroup();
-        returnToGroupPage();
-    }
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
     }
@@ -79,18 +87,4 @@ public class GroupHelper extends HelperBase{
     public int getGroupCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
-
-
-    public Groups all() {
-        Groups groups = new Groups();
-        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-        for (WebElement element : elements) {
-            String name = element.getText();
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            groups.add(new GroupData().withId(id).withName(name));
-        }
-        return groups;
-    }
-
-
 }
