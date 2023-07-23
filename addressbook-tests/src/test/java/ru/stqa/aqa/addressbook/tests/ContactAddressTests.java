@@ -2,7 +2,6 @@ package ru.stqa.aqa.addressbook.tests;
 
 import org.testng.annotations.Test;
 import ru.stqa.aqa.addressbook.model.ContactData;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
