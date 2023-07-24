@@ -81,9 +81,8 @@ public class GroupHelper extends HelperBase{
 
 
     public void selectGroupById(int id) {
-        wd.findElement(By.cssSelector(String.format("input[value='%id']", id))).click();
+        click(By.cssSelector(String.format("input[value='%d']", id)));
     }
-
     public void deleteSelectedGroup() {
         click(By.name("delete"));
     }

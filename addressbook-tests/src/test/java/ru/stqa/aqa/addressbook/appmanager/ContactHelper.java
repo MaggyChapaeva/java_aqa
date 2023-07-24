@@ -103,7 +103,9 @@ public class ContactHelper extends HelperBase{
 
     public void updateContact() { click(By.name("update")); }
 
-    public void selectContactById(int id) { wd.findElement(By.cssSelector(String.format("input[value='%id']", id))).click(); }
+    public void selectContactById(int id) {
+        click(By.cssSelector(String.format("input[value='%d']", id)));
+    }
 
     public void deleteSelectedContact() { click(By.xpath("//input[@value='Delete']")); }
 

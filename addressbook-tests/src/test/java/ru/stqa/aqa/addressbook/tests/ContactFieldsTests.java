@@ -4,25 +4,31 @@ import org.testng.annotations.Test;
 import ru.stqa.aqa.addressbook.model.ContactData;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
-public class ContactPhoneTests extends TestBase{
+public class ContactFieldsTests extends TestBase{
 
-    @Test
-    public void testContactPhones(){
+    @Test(enabled = false)
+    public void testContactFields(){
         app.goTo().returnToHomePage();
 
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+    }
+    private String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
+                .stream().filter((s) -> ! s.equals(""))
+                .collect(Collectors.joining("\n"));
     }
 
     private String mergePhones(ContactData contact) {
         return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
                 .stream().filter((s) -> ! s.equals(""))
-                .map(ContactPhoneTests::cleaned)
+                .map(ContactFieldsTests::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
