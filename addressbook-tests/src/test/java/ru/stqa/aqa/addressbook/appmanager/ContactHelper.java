@@ -70,7 +70,7 @@ public class ContactHelper extends HelperBase{
     }
 
     private void returnToContactPage() {
-        wd.findElement(By.linkText("home")).click();
+        click(By.linkText("home"));
     }
 
     public void initContactCreation() {
