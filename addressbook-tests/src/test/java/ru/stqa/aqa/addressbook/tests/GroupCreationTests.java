@@ -14,37 +14,16 @@ public class GroupCreationTests extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validGroups() throws IOException {
-
         List<Object[]> list = new ArrayList<Object[]>();
-        String filePath = "src/test/resources/groups.csv";
-        File file = new File(filePath);
-
-        /*if (file.exists() && file.isFile()) {
-            System.out.println("Путь к файлу верный");
-        } else {
-            System.out.println("Неверный путь к файлу");
-        }*/
-
+        File file = new File("src/test/resources/groups.csv");
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line = reader.readLine();
-
-        /*if(line!=null){
-            System.out.println(line);
-        }*/
-
         while (line != null) {
             String[] split = line.split(";");
-            list.add(new Object[] {new GroupData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
+            list.add(new Object[]{new GroupData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
             line = reader.readLine();
         }
         return list.iterator();
-
-        //Предыдущая версия рабочая
-        /*List<Object[]> list = new ArrayList<>();
-        list.add(new Object[] {new GroupData().withName("test1").withHeader("header1").withFooter("footer1")});
-        list.add(new Object[] {new GroupData().withName("test2").withHeader("header2").withFooter("footer2")});
-        list.add(new Object[] {new GroupData().withName("test3").withHeader("header3").withFooter("footer3")});
-        return list.iterator();*/
     }
 
     @Test(dataProvider = "validGroups")
@@ -55,7 +34,7 @@ public class GroupCreationTests extends TestBase {
         assertThat(app.group().count(), equalTo(before.size() + 1));
         Groups after = app.group().all();
         assertThat(after, equalTo(before.withAdded
-                                 (group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+                (group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
 
     }
 
