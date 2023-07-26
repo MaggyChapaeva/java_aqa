@@ -3,7 +3,6 @@ package ru.stqa.aqa.addressbook.tests;
 import org.openqa.selenium.remote.Browser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.event.Level;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -31,7 +30,7 @@ public class TestBase {
 
     @BeforeMethod
     public void logTestStart(Method m, Object[] p){
-        logger.info("Start test test " + m.getName() + " with parametrs " + Arrays.asList());
+        logger.info("Start test test " + m.getName() + " with parametrs " + Arrays.asList(p));
     }
 
     @AfterMethod(alwaysRun = true)

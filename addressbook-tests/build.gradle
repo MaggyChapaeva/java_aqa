@@ -13,6 +13,7 @@ dependencies {
     testImplementation 'com.thoughtworks.xstream:xstream:1.4.8'
     testImplementation 'com.google.code.gson:gson:2.6.1'
     testImplementation 'ch.qos.logback:logback-classic:1.1.5'
+    testImplementation 'mysql:mysql-connector-java:5.1.38'
     implementation 'net.datafaker:datafaker:1.4.0'
 }
 
