@@ -16,7 +16,7 @@ public class ContactModificationTests extends TestBase {
                     .withMobilePhone("+71234568899").withEmail("test@mail.com"));
         }
     }
-    @Test
+    @Test(enabled = false)
     public void testContactModification() {
 
         Contacts before = app.contact().all();

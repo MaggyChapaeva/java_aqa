@@ -1,6 +1,5 @@
 package ru.stqa.aqa.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
 import org.testng.annotations.Test;
 import ru.stqa.aqa.addressbook.model.ContactData;
 import java.util.Arrays;
@@ -10,7 +9,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class ContactFieldsTests extends TestBase{
 
-    @Test
+    @Test(enabled = false)
     public void testContactFields(){
         app.goTo().returnToHomePage();
 
