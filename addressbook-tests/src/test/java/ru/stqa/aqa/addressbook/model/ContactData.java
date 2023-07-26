@@ -12,7 +12,7 @@ import java.util.Objects;
 @Entity
 @Table(name="addressbook")
 
-public class ContactData {
+public class ContactData{
 
     @Id
     @Column(name = "id")
@@ -197,5 +197,6 @@ public class ContactData {
     public int hashCode() {
         return Objects.hash(id, firstname, lastname);
     }
+
 
 }

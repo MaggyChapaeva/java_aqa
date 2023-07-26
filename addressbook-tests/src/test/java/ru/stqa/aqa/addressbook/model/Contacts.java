@@ -1,10 +1,10 @@
 package ru.stqa.aqa.addressbook.model;
 
 import com.google.common.collect.ForwardingSet;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import org.testng.Assert;
+import java.util.Comparator;
+import java.util.List;
+import java.util.*;
 
 public class Contacts extends ForwardingSet<ContactData> {
 
@@ -39,4 +39,11 @@ public class Contacts extends ForwardingSet<ContactData> {
         contacts.remove(contact);
         return contacts;
     }
+
+   public Contacts replace(ContactData removedContact, ContactData addedContact){
+       Contacts contacts = new Contacts(this);
+       contacts.remove(removedContact);
+       contacts.add(addedContact);
+       return contacts;
+   }
 }

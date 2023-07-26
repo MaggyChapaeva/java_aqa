@@ -20,6 +20,7 @@ public class ContactFieldsTests extends TestBase{
         assertThat(mergeEmails(contact), equalTo(mergeEmails(contactInfoFromEditForm)));
         assertThat(mergePhones(contact), equalTo(mergePhones(contactInfoFromEditForm)));
         assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
+        verifyContactListInUI();
     }
     private String mergeEmails(ContactData contact) {
         return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
