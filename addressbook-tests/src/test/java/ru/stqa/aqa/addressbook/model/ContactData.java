@@ -18,41 +18,47 @@ public class ContactData {
     @Column(name = "id")
     private int id = Integer.MAX_VALUE;
 
-    @Column(name = "firstname")
     @Expose
+    @Column(name = "firstname")
     private String firstname;
 
-    @Column(name = "lastname")
     @Expose
+    @Column(name = "lastname")
     private String lastname;
     @Expose
     private String nickname;
-
-    @Column(name = "mobile")
     @Expose
+    @Column(name = "mobile")
     @Type(type = "text")
     private String mobilePhone;
     @Expose
+    @Column(name = "email")
     @Type(type = "text")
     private String email;
-    @Transient
+    @Expose
+    @Column(name = "email2")
+    @Type(type = "text")
     private String email2;
-    @Transient
+    @Expose
+    @Column(name = "email3")
+    @Type(type = "text")
     private String email3;
 
     @Transient
     private String group;
-
+    @Expose
     @Column(name = "home")
     @Type(type = "text")
     private String homePhone;
-
+    @Expose
     @Column(name = "work")
     @Type(type = "text")
     private String workPhone;
     @Transient
     private String allPhones;
-    @Transient
+    @Expose
+    @Column(name = "address")
+    @Type(type = "text")
     private String address;
     @Transient
     private String allEmails;

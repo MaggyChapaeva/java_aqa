@@ -81,7 +81,15 @@ public class ContactHelper extends HelperBase{
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("nickname"), contactData.getNickname());
-        attach(By.name("photo"), contactData.getPhoto());
+
+        try {
+            if (contactData.getPhoto() != null) {
+                attach(By.name("photo"), contactData.getPhoto());
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Ошибка при обработке фото: " + e.getMessage());
+        }
+
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("email"), contactData.getEmail());
 
@@ -135,9 +143,16 @@ public class ContactHelper extends HelperBase{
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
 
         wd.navigate().back();
-        return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
-                                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withAddress(address)
-                                .withEmail(email).withEmail2(email2).withEmail3(email3);
+        return new ContactData().withId(contact.getId())
+                                .withFirstname(firstname)
+                                .withLastname(lastname)
+                                .withHomePhone(home)
+                                .withMobilePhone(mobile)
+                                .withWorkPhone(work)
+                                .withAddress(address)
+                                .withEmail(email)
+                                .withEmail2(email2)
+                                .withEmail3(email3);
     }
 
     private void initContactModificationById(int id) {
