@@ -37,6 +37,7 @@ public class GroupCreationTests extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validGroupsFromJson() throws IOException {
+
         List<Object[]> list = new ArrayList<Object[]>();
         File file = new File("src/test/resources/groups.json");
         try (BufferedReader reader = new BufferedReader(new FileReader(file))){
@@ -61,7 +62,6 @@ public class GroupCreationTests extends TestBase {
         Groups after = app.group().all();
         assertThat(after, equalTo(before.withAdded
                 (group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
-
     }
 
     @Test
