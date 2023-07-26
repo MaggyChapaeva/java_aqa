@@ -14,6 +14,7 @@ dependencies {
     testImplementation 'com.google.code.gson:gson:2.6.1'
     testImplementation 'ch.qos.logback:logback-classic:1.1.5'
     testImplementation 'mysql:mysql-connector-java:5.1.38'
+    testImplementation 'org.hibernate:hibernate-core:5.1.0.Final'
     implementation 'net.datafaker:datafaker:1.4.0'
 }
 
